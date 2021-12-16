@@ -32,7 +32,7 @@ class AddEditNoteViewModel @Inject constructor(
                             isHintVisible = false
                         )
                         _noteContent.value = noteContent.value.copy(
-                            text = it.title,
+                            text = it.content,
                             isHintVisible = false
                         )
                         _noteColor.value = it.color

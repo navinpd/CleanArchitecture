@@ -23,13 +23,14 @@ import com.plcoding.cleanarchitecturenoteapp.feature_note.domain.model.Note
 @Composable
 fun NoteItem(
     note: Note,
-    modifier: Modifier,
+    modifier: Modifier = Modifier,
     cornerRadius: Dp = 10.dp,
     cutCornerSize: Dp = 30.dp,
     onDeleteClick: () -> Unit
 ) {
-
-    Box(modifier = modifier) {
+    Box(
+        modifier = modifier
+    ) {
         Canvas(modifier = Modifier.matchParentSize()) {
             val clipPath = Path().apply {
                 lineTo(size.width - cutCornerSize.toPx(), 0f)
@@ -38,13 +39,13 @@ fun NoteItem(
                 lineTo(0f, size.height)
                 close()
             }
+
             clipPath(clipPath) {
                 drawRoundRect(
                     color = Color(note.color),
                     size = size,
                     cornerRadius = CornerRadius(cornerRadius.toPx())
                 )
-                //right top corner
                 drawRoundRect(
                     color = Color(
                         ColorUtils.blendARGB(note.color, 0x000000, 0.2f)
@@ -54,30 +55,28 @@ fun NoteItem(
                     cornerRadius = CornerRadius(cornerRadius.toPx())
                 )
             }
-            Column(
-                modifier = Modifier.fillMaxSize()
-                    .padding(16.dp)
-                    .padding(end = 32.dp)
-            ) {
-                Text(
-                    text = note.title,
-                    style = MaterialTheme.typography.h6,
-                    color = MaterialTheme.colors.onSecondary,
-                    maxLines = 1,
-                    overflow = TextOverflow.Ellipsis
-                )
-                Divider(
-                    modifier = Modifier.fillMaxWidth().height(8.dp)
-                )
-                Text(
-                    text = note.content,
-                    style = MaterialTheme.typography.body2,
-                    color = MaterialTheme.colors.onSecondary,
-                    maxLines = 10,
-                    overflow = TextOverflow.Ellipsis
-                )
-            }
-
+        }
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(16.dp)
+                .padding(end = 32.dp)
+        ) {
+            Text(
+                text = note.title,
+                style = MaterialTheme.typography.h6,
+                color = MaterialTheme.colors.onSurface,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis
+            )
+            Spacer(modifier = Modifier.height(8.dp))
+            Text(
+                text = note.content,
+                style = MaterialTheme.typography.body1,
+                color = MaterialTheme.colors.onSurface,
+                maxLines = 10,
+                overflow = TextOverflow.Ellipsis
+            )
         }
         IconButton(
             onClick = onDeleteClick,
@@ -85,9 +84,9 @@ fun NoteItem(
         ) {
             Icon(
                 imageVector = Icons.Default.Delete,
-                contentDescription = "Delete Note"
+                contentDescription = "Delete note",
+                tint = MaterialTheme.colors.onSurface
             )
         }
     }
-
 }
