@@ -78,9 +78,9 @@ fun NotesScreen(
                         .fillMaxWidth()
                         .padding(vertical = 16.dp),
                     noteOrder = state.noteOrder,
-                    onOrderChange = {
+                    onOrderChange = { noteOrder ->
                         viewModel
-                            .onEvent(NotesEvent.Order(it))
+                            .onEvent(NotesEvent.Order(noteOrder))
                     }
                 )
             }
