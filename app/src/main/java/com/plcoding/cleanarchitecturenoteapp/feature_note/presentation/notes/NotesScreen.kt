@@ -13,9 +13,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.plcoding.cleanarchitecturenoteapp.core.util.TestTags.ORDER_SELECTION
 import com.plcoding.cleanarchitecturenoteapp.feature_note.presentation.notes.components.NoteItem
 import com.plcoding.cleanarchitecturenoteapp.feature_note.presentation.notes.components.OrderSection
 import com.plcoding.cleanarchitecturenoteapp.feature_note.presentation.util.Screen
@@ -37,9 +39,9 @@ fun NotesScreen(
                 onClick = {
                     navController.navigate(Screen.AddEditNoteScreen.route)
                 },
-                backgroundColor = MaterialTheme.colors.primary
+                backgroundColor = MaterialTheme.colors.primary,
             ) {
-                Icon(imageVector = Icons.Default.Add, contentDescription = "Add Note")
+                Icon(imageVector = Icons.Default.Add, contentDescription = "Add")
             }
         },
         scaffoldState = scaffoldState
@@ -76,7 +78,8 @@ fun NotesScreen(
                 OrderSection(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(vertical = 16.dp),
+                        .padding(vertical = 16.dp)
+                        .testTag(ORDER_SELECTION),
                     noteOrder = state.noteOrder,
                     onOrderChange = { noteOrder ->
                         viewModel

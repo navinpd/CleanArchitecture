@@ -11,7 +11,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.plcoding.cleanarchitecturenoteapp.feature_note.presentation.add_edit_note.addEditNoteScreen
+import com.plcoding.cleanarchitecturenoteapp.feature_note.presentation.add_edit_note.AddEditNoteScreen
 import com.plcoding.cleanarchitecturenoteapp.feature_note.presentation.notes.NotesScreen
 import com.plcoding.cleanarchitecturenoteapp.feature_note.presentation.util.Screen
 import com.plcoding.cleanarchitecturenoteapp.ui.theme.CleanArchitectureNoteAppTheme
@@ -58,7 +58,7 @@ class MainActivity : ComponentActivity() {
                             )
                         ) {
                             val color = it.arguments?.getInt("noteColor") ?: -1
-                            addEditNoteScreen(
+                            AddEditNoteScreen(
                                 navController = navController,
                                 noteColor = color
                             )
